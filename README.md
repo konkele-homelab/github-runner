@@ -22,8 +22,6 @@ docker build -t myrunner:latest .
 ```bash
 docker run -d \
   -e REPO_URL="https://github.com/your/repo" \
-  -e RUNNER_UID=3000 \
-  -e RUNNER_GID=988 \
   -e ACCESS_TOKEN_FILE="/run/secrets/gh_token" \
   -v /var/run/docker.sock:/var/run/docker.sock \
   --secret source=gh_token,target=/run/secrets/gh_token \
@@ -88,9 +86,6 @@ services:
       ACCESS_TOKEN_FILE: "/run/secrets/github_pat"
       # Optional: run as root (true/false)
       RUN_AS_ROOT: "false"
-      # Optional UID/GID overrides
-      RUNNER_UID: "<uid>"
-      RUNNER_GID: "<gid>"
     secrets:
       - github_pat
 
